@@ -5,8 +5,9 @@ class DateTimeView {
 
 	public function show() {
 
-		$timeString = 'TODO, Write servertime here...';
+    $timeString = getdate();
+    var_dump($timeString["mday"]);
 
-		return '<p>' . $timeString . '</p>';
+		return '<p>' . $timeString["weekday"] . ', the ' . $timeString["mday"] . 'th of ' . $timeString["month"] . ' ' . $timeString["year"] . ', The time is'.  '</p>';
 	}
 }
