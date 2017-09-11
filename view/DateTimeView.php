@@ -7,6 +7,6 @@ class DateTimeView {
 
     $timeString = getdate();
 
-		return '<p>' . $timeString["weekday"] . ',the ' . $timeString["mday"] . 'th of ' . $timeString["month"] . ' ' . $timeString["year"] . ', The time is'.  '</p>';
+		return '<p>' . $timeString["weekday"] . ', the ' . $timeString["mday"] . 'th of ' . $timeString["month"] . ' ' . $timeString["year"] . ', The time is'.  '</p>';
 	}
 }
