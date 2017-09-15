@@ -46,7 +46,7 @@ class LoginView {
 	* @return  void, BUT writes to standard output!
 	*/
 	private function generateLoginFormHTML($message) {
-    var_dump($_REQUEST);
+    //var_dump($_REQUEST);
 		return '
 			<form method="post" > 
 				<fieldset>
