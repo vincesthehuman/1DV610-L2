@@ -19,7 +19,12 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = '';
+    $message = '';
+    if($_REQUEST){
+      $message .= 'request sent';
+    }else{
+      $message .= 'no request sent';
+    }
 		
 		$response = $this->generateLoginFormHTML($message);
 		//$response .= $this->generateLogoutButtonHTML($message);
@@ -46,7 +51,6 @@ class LoginView {
 	* @return  void, BUT writes to standard output!
 	*/
 	private function generateLoginFormHTML($message) {
-    //var_dump($_REQUEST);
 		return '
 			<form method="post" > 
 				<fieldset>
@@ -70,8 +74,16 @@ class LoginView {
 	
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
-    //RETURN REQUEST VARIABLE: USERNAME
     return $_REQUEST['LoginView::UserName'];
-	}
+  }
+
+  private function getRequestPassword() {
+    return $_REQUEST['LoginView::Password'];
+  }
+
+  private function getRequestKeepMeLoggedIn() {
+    return $_REQUEST['LoginView::KeepMeLoggedIn'];
+  }
+  
 	
 }
