@@ -20,11 +20,6 @@ class LoginView {
 	 */
 	public function response() {
     $message = '';
-    if($_REQUEST){
-      $message .= 'request sent';
-    }else{
-      $message .= 'no request sent';
-    }
 		
 		$response = $this->generateLoginFormHTML($message);
 		//$response .= $this->generateLogoutButtonHTML($message);
