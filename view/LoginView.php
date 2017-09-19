@@ -3,7 +3,7 @@
 class LoginView {
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
-	private static $name = 'LoginView::UserName';
+	private static $name = 'LoginView::Username';
 	private static $password = 'LoginView::Password';
 	private static $cookieName = 'LoginView::CookieName';
 	private static $cookiePassword = 'LoginView::CookiePassword';
@@ -78,7 +78,7 @@ class LoginView {
     $message = '';
     foreach ($_REQUEST as $key => $value) {
       if(strlen($value) <= 0){
-        return $message .= $key . ' needs to be put in.';
+        return $message .= substr($key, 11) . ' is missing.';
       }
     }
     return $message;
