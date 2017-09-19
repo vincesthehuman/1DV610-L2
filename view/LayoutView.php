@@ -14,8 +14,8 @@ class LayoutView {
           <h1>Assignment 2</h1>
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
+          ' . $v->response() . '
           <div class="container">
-              ' . $v->response() . '
               
               ' . $dtv->show() . '
           </div>

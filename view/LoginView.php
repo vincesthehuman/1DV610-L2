@@ -10,7 +10,6 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 
-  private $message = '';
 
 	/**
 	 * Create HTTP response
@@ -20,8 +19,17 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$response = $this->generateLoginFormHTML($this->message);
-		//$response .= $this->generateLogoutButtonHTML($message);
+    $message = '';
+
+    if($this->loginAttempt()){
+      $message .= $this->validateLoginInput();
+    }
+
+    if($this->isLoggedIn()){
+      $response .= $this->generateLogoutButtonHTML($message);
+    }
+
+    $response = $this->generateLoginFormHTML($message);
 		return $response;
 	}
 
@@ -64,19 +72,38 @@ class LoginView {
 				</fieldset>
 			</form>
 		';
-	}
+  }
+
+  private function validateLoginInput(){
+    $message = '';
+    foreach ($_REQUEST as $key => $value) {
+      if(strlen($value) <= 0){
+        return $message .= $key . ' needs to be put in.';
+      }
+    }
+    return $message;
+  }
+
+  private function isLoggedIn(){
+    return false;
+  }
+  
+  public function loginAttempt(){
+    return isset($_REQUEST[self::$login]);
+  }
 	
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
-    return $_REQUEST['LoginView::UserName'];
+    return $_REQUEST[self::$name];
   }
 
   private function getRequestPassword() {
-    return $_REQUEST['LoginView::Password'];
+    return $_REQUEST[self::$password];
   }
 
   private function getRequestKeepMeLoggedIn() {
-    return $_REQUEST['LoginView::KeepMeLoggedIn'];
+    return $_REQUEST[self::$keep];
   }
-
+  
+	
 }
