@@ -78,7 +78,7 @@ class LoginView {
     $notCorrectInputMessage = '';
     foreach ($_REQUEST as $key => $value) {
       if(strlen($value) <= 0){
-        return $notCorrectInputMessage .= ucfirst(strtolower(substr($key, 11))) . ' is missing.';
+        return $notCorrectInputMessage .= ucfirst(strtolower(substr($key, 11))) . ' is missing';
       }
     }
     return $notCorrectInputMessage;
