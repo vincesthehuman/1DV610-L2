@@ -8,7 +8,9 @@ class LoginView {
 	private static $cookieName = 'LoginView::CookieName';
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
-	private static $messageId = 'LoginView::Message';
+  private static $messageId = 'LoginView::Message';
+  
+  private $requestUsername = '';
 
 
 	/**
@@ -60,7 +62,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->requestUsername . '" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -80,9 +82,13 @@ class LoginView {
       if(strlen($value) <= 0){
         return $notCorrectInputMessage .= ucfirst(strtolower(substr($key, 11))) . ' is missing';
       }
+      $this->requestUsername .= $this->getRequestUserName();
     }
     return $notCorrectInputMessage;
   }
+
+  //ToDo
+  //Save the login name if no password is put in
 
   private function isLoggedIn(){
     return false;
@@ -105,5 +111,5 @@ class LoginView {
     return $_REQUEST[self::$keep];
   }
   
-	
+
 }
