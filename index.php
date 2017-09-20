@@ -2,6 +2,7 @@
 
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
+require_once('view/RegisterView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 
@@ -10,10 +11,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
 //CREATE OBJECTS OF THE VIEWS
-$v = new LoginView();
-$dtv = new DateTimeView();
-$lv = new LayoutView();
+$LoginView = new LoginView();
+$RegisterView = new RegisterView();
+$DateTimeView = new DateTimeView();
+$LayoutView = new LayoutView();
 
 
-$lv->render(false, $v, $dtv);
+$LayoutView->render(false, $LoginView, $RegisterView, $DateTimeView);
 
