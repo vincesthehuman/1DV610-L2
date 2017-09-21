@@ -10,6 +10,9 @@ require_once('view/LayoutView.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+//Starts session
+session_start();
+
 //CREATE OBJECTS OF THE VIEWS
 $LoginView = new LoginView();
 $RegisterView = new RegisterView();
