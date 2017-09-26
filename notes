@@ -1,1 +1,3 @@
 View - Presentation component. Should only present data.
+
+Tänk session som State, sätts ett nytt kommer det att renderas om..?
