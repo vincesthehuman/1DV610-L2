@@ -4,6 +4,7 @@
 class LayoutView {
   
   public function render(LoginView $LoginView, $RegisterView, DateTimeView $DateTimeView) {
+    
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -12,9 +13,10 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
-          <a>Register a new user</a>
+          <a href="/register">Register a new user</a>
           ' . $this->renderIsLoggedIn($_SESSION['isLoggedIn']) . '
           ' . $LoginView->response() . '
+          ' . $this->test() . '
           <div class="container">
               ' . $DateTimeView->show() . '
           </div>
@@ -30,5 +32,9 @@ class LayoutView {
     else {
       return '<h2>Not logged in</h2>';
     }
+  }
+
+  private function test(){
+    var_dump(explode('/', trim($_SERVER['REQUEST_URI'], '/')));
   }
 }

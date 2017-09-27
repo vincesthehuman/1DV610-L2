@@ -25,6 +25,6 @@ $RegisterView = new RegisterView();
 $DateTimeView = new DateTimeView();
 $LayoutView = new LayoutView();
 
-
+//Move all this to ViewController
 $LayoutView->render($LoginView, $RegisterView, $DateTimeView);
 
