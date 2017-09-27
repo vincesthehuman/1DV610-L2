@@ -13,6 +13,12 @@ ini_set('display_errors', 'On');
 //Starts session
 session_start();
 
+$_SESSION['isLoggedIn'] = false;
+$_SESSION['userName'] = '';
+$_SESSION['passsword'] = '';
+$_SESSION['message'] = '';
+
+
 //CREATE OBJECTS OF THE VIEWS
 $LoginView = new LoginView();
 $RegisterView = new RegisterView();
@@ -20,5 +26,5 @@ $DateTimeView = new DateTimeView();
 $LayoutView = new LayoutView();
 
 
-$LayoutView->render(false, $LoginView, $RegisterView, $DateTimeView);
+$LayoutView->render($LoginView, $RegisterView, $DateTimeView);
 

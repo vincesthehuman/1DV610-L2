@@ -18,11 +18,11 @@ class LoginView {
 	 *
 	 * Should be called after a login attempt has been determined
 	 *
-	 * @return  void BUT writes to standard output and cookies!
+	 * @return void BUT writes to standard output and cookies!
 	 */
 	 
 	public function response() {
-    $message = '';
+    $message = $_SESSION['message'];
 
     if($this->loginAttempt()){
       $message .= $this->validateLoginInput();
@@ -92,7 +92,7 @@ class LoginView {
   //Save the login name if no password is put in
 
   private function isLoggedIn(){
-    return false;
+		return $_SESSION['isLoggedIn'];
   }
   
   public function loginAttempt(){
