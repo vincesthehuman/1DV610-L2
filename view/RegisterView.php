@@ -19,7 +19,8 @@ class RegisterView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-    $message = '';
+		$message = '';
+		//A message should be found i session, all controllers add the correct message like $_SESSION['register::Message']
 
     $response = $this->generateRegisterFormHTML();
 		return $response;
@@ -31,6 +32,8 @@ class RegisterView {
 	* @return  void, BUT writes to standard output!
 	*/
 	private function generateRegisterFormHTML() {
+
+		//Make so that the form is like the login view form with self::UserName etc
 		return '
 		<h2>Register new user</h2>
 		<form action="?register" method="post" enctype="multipart/form-data">
@@ -56,8 +59,4 @@ class RegisterView {
 	public function renderLink(){
 		return '<a href="?">Back to login</a>';
 	}
-
-
-  
-
 }

@@ -19,12 +19,12 @@ class ViewController{
     $this->DateTimeView = new DateTimeView();
   }
 
+  //Checks what client is trying to GET, renders page corresponding to that GET
   public function pageToRender(){
     if(isset($_GET['register'])){
-      return $this->LayoutView->render($this->DateTimeView, $this->RegisterView);
-    }
-    if(isset($_GET)){
-      return $this->LayoutView->render($this->DateTimeView, $this->LoginView);
+      $this->LayoutView->render($this->DateTimeView, $this->RegisterView);
+    }else{
+      $this->LayoutView->render($this->DateTimeView, $this->LoginView);
     }
   }
 }
