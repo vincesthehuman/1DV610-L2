@@ -83,8 +83,8 @@ class LoginView {
       if(strlen($value) <= 0){
         return $notCorrectInputMessage .= ucfirst(strtolower(substr($key, 11))) . ' is missing';
       }
-      $this->requestUsername .= $this->getRequestUserName();
-    }
+		}
+		$this->requestUsername .= $this->getRequestUserName();
     return $notCorrectInputMessage;
 	}
 	
