@@ -78,13 +78,13 @@ class LoginView {
   }
 
   private function validateLoginInput(){
+		$this->getRequestUserName();
     $notCorrectInputMessage = '';
     foreach ($_REQUEST as $key => $value) {
       if(strlen($value) <= 0){
         return $notCorrectInputMessage .= ucfirst(strtolower(substr($key, 11))) . ' is missing';
       }
 		}
-		$this->requestUsername .= $this->getRequestUserName();
     return $notCorrectInputMessage;
 	}
 	
@@ -105,7 +105,7 @@ class LoginView {
 	
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
-    return $_REQUEST[self::$name];
+    $this->requestUsername .= $_REQUEST[self::$name];
   }
 
   private function getRequestPassword() {
