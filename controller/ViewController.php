@@ -20,16 +20,11 @@ class ViewController{
   }
 
   public function pageToRender(){
-    //Checks the requested uri, 
-    $requestedRoute = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-    switch ($requestedRoute[0]) {
-      case 'register':
-        $this->LayoutView->render($this->DateTimeView, $this->RegisterView);
-        break;
-      case '':
-        $this->LayoutView->render($this->DateTimeView, $this->LoginView);
-        # render login view
-        break;
+    if(isset($_GET['register'])){
+      return $this->LayoutView->render($this->DateTimeView, $this->RegisterView);
+    }
+    if(isset($_GET)){
+      return $this->LayoutView->render($this->DateTimeView, $this->LoginView);
     }
   }
 }

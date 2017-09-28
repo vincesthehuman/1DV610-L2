@@ -89,7 +89,7 @@ class LoginView {
 	}
 	
 	public function renderLink(){
-		return '<a href="/register">Register a new user</a>';
+		return '<a href="?register">Register a new user</a>';
 	}
 
   //ToDo
