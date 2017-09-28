@@ -86,7 +86,11 @@ class LoginView {
       $this->requestUsername .= $this->getRequestUserName();
     }
     return $notCorrectInputMessage;
-  }
+	}
+	
+	public function renderLink(){
+		return '<a href="/register">Register a new user</a>';
+	}
 
   //ToDo
   //Save the login name if no password is put in

@@ -3,7 +3,7 @@
 
 class LayoutView {
   
-  public function render(LoginView $LoginView, $RegisterView, DateTimeView $DateTimeView) {
+  public function render(DateTimeView $DateTimeView, $PageContent) {
     
     echo '<!DOCTYPE html>
       <html>
@@ -13,12 +13,11 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
-          <a href="/register">Register a new user</a>
+          ' . $PageContent->renderLink() . '
           ' . $this->renderIsLoggedIn($_SESSION['isLoggedIn']) . '
-          ' . $LoginView->response() . '
-          ' . $this->test() . '
           <div class="container">
-              ' . $DateTimeView->show() . '
+            ' . $PageContent->response() . '
+            ' . $DateTimeView->show() . '
           </div>
          </body>
       </html>
@@ -34,7 +33,4 @@ class LayoutView {
     }
   }
 
-  private function test(){
-    var_dump(explode('/', trim($_SERVER['REQUEST_URI'], '/')));
-  }
 }

@@ -21,15 +21,7 @@ class RegisterView {
 	public function response() {
     $message = '';
 
-    if($this->loginAttempt()){
-      $message .= $this->validateLoginInput();
-    }
-
-    if($this->isLoggedIn()){
-      $response .= $this->generateLogoutButtonHTML($message);
-    }
-
-    $response = $this->generateLoginFormHTML($message);
+    $response = $this->generateRegisterFormHTML();
 		return $response;
 	}
 	
@@ -38,27 +30,32 @@ class RegisterView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLoginFormHTML($message) {
+	private function generateRegisterFormHTML() {
 		return '
-			<form method="post" > 
-				<fieldset>
-					<legend>Login - enter Username and password</legend>
-					<p id="' . self::$messageId . '">' . $message . '</p>
-					
-					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->requestUsername . '" />
-
-					<label for="' . self::$password . '">Password :</label>
-					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
-
-					<label for="' . self::$keep . '">Keep me logged in  :</label>
-					<input type="checkbox" id="' . self::$keep . '" name="' . self::$keep . '" />
-					
-					<input type="submit" name="' . self::$login . '" value="login" />
-				</fieldset>
+		<h2>Register new user</h2>
+		<form method="post">
+			<fieldset>
+			<legend>Register a new user - Write username and password</legend>
+				<p id="Message"></p>
+				<label for="UserName" >Username :</label>
+				<input type="text" size="20" name="RegisterView::UserName" id="RegisterView::UserName" value="" />
+				<br/>
+				<label for="RegisterView::Password" >Password  :</label>
+				<input type="password" size="20" name="RegisterView::Password" id="RegisterView::Password" value="" />
+				<br/>
+				<label for="RegisterView::PasswordRepeat" >Repeat password  :</label>
+				<input type="password" size="20" name="RegisterView::PasswordRepeat" id="RegisterView::PasswordRepeat" value="" />
+				<br/>
+				<input id="submit" type="submit" name="DoRegistration"  value="Register" />
+				<br/>
+			</fieldset>
 			</form>
 		';
-  }
+	}
+	
+	public function renderLink(){
+		return '<a href="/">Back to login</a>';
+	}
 
 
   
