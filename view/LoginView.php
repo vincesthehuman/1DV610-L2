@@ -9,10 +9,9 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
   private static $messageId = 'LoginView::Message';
-  
-  private $requestUsername = '';
-
-
+  private static $sessionMessage = 'LoginView::sessionMessage';
+	private static $requestUsername = '';
+	
 	/**
 	 * Create HTTP response
 	 *
@@ -22,18 +21,16 @@ class LoginView {
 	 */
 	 
 	public function response() {
-    $message = $_SESSION['message'];
 
     if($this->loginAttempt()){
-      $message .= $this->validateLoginInput();
+      $_SESSION[self::$sessionMessage] .= $this->validateLoginInput();
     }
 
     if($this->isLoggedIn()){
-      $response .= $this->generateLogoutButtonHTML($message);
+      $response .= $this->generateLogoutButtonHTML();
     }
 
-    $response = $this->generateLoginFormHTML($message);
-		return $response;
+    return $this->generateLoginFormHTML();
 	}
 
 	/**
@@ -41,10 +38,10 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLogoutButtonHTML($message) {
+	private function generateLogoutButtonHTML() {
 		return '
 			<form  method="post" >
-				<p id="' . self::$messageId . '">' . $message .'</p>
+				<p id="' . self::$messageId . '">' . $_SESSION[self::$sessionMessage] .'</p>
 				<input type="submit" name="' . self::$logout . '" value="logout"/>
 			</form>
 		';
@@ -55,15 +52,15 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLoginFormHTML($message) {
+	private function generateLoginFormHTML() {
 		return '
 			<form method="post" > 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
-					<p id="' . self::$messageId . '">' . $message . '</p>
+					<p id="' . self::$messageId . '">' . $_SESSION[self::$sessionMessage] . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->requestUsername . '" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . self::$requestUsername . '" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -78,22 +75,37 @@ class LoginView {
   }
 
   private function validateLoginInput(){
-		$this->getRequestUserName();
-    $notCorrectInputMessage = '';
-    foreach ($_REQUEST as $key => $value) {
-      if(strlen($value) <= 0){
-        return $notCorrectInputMessage .= ucfirst(strtolower(substr($key, 11))) . ' is missing';
-      }
-		}
-    return $notCorrectInputMessage;
+		$this->getAndSetRequestUserName();
+
+    return $this->checkIfCorrectLoginInput();
 	}
 	
 	public function renderLink(){
 		return '<a href="?register">Register a new user</a>';
 	}
 
-  //ToDo
-  //Save the login name if no password is put in
+	private function checkIfCorrectLoginInput(){
+		foreach ($_REQUEST as $key => $value) {
+      if(strlen($value) <= 0){
+        return ucfirst(strtolower(substr($key, 11))) . ' is missing';
+      }
+		}
+		$this->checkCredentials();
+	}
+
+	private function checkCredentials(){
+		if($_REQUEST[self::$name] != 'Admin'){
+			return $_SESSION[self::$sessionMessage] .= 'Wrong name or password';
+		}elseif($_REQUEST[self::$password] != 'Password'){
+			return $_SESSION[self::$sessionMessage] .= 'Wrong name or password';
+		}
+
+			// foreach ($_REQUEST as $key => $value) {
+			// 	var_dump($key);
+      // if($key[self::$name] === 'Admin'){
+      //   return $_SESSION[self::$sessionMessage] .= 'Wrong name or password';
+      // }
+	}
 
   private function isLoggedIn(){
 		return $_SESSION['isLoggedIn'];
@@ -103,9 +115,8 @@ class LoginView {
     return isset($_REQUEST[self::$login]);
   }
 	
-	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
-	private function getRequestUserName() {
-    $this->requestUsername .= $_REQUEST[self::$name];
+	private function getAndSetRequestUserName() {
+    self::$requestUsername .= $_REQUEST[self::$name];
   }
 
   private function getRequestPassword() {

@@ -11,7 +11,7 @@ session_start();
 $_SESSION['isLoggedIn'] = false;
 $_SESSION['userName'] = '';
 $_SESSION['passsword'] = '';
-$_SESSION['message'] = '';
+$_SESSION['LoginView::sessionMessage'] = '';
 
 $ViewController = new ViewController();
 
