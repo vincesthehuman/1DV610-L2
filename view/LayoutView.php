@@ -1,9 +1,9 @@
 <?php
 
+
 class LayoutView {
   
-  public function render(DateTimeView $DateTimeView, $PageContent) {
-    var_dump($_SESSION);
+  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -11,24 +11,25 @@ class LayoutView {
           <title>Login Example</title>
         </head>
         <body>
-          <p> ' . $_SESSION['foo'] . ' </p>
           <h1>Assignment 2</h1>
-          ' . $PageContent->renderLink() . '
-          <h2> ' . $this->renderIsLoggedIn() . ' </h2>
+          ' . $this->renderIsLoggedIn($isLoggedIn) . '
+          
           <div class="container">
-            ' . $PageContent->response() . '
-            ' . $DateTimeView->show() . '
+              ' . $v->response() . '
+              
+              ' . $dtv->show() . '
           </div>
          </body>
       </html>
     ';
   }
-
-  private function renderIsLoggedIn(){
-    if(!$_SESSION['LayoutView::isLoggedIn']){
-      return 'Not logged in 1212121212121212';
-    }else{
-      return 'Logged in';
+  
+  private function renderIsLoggedIn($isLoggedIn) {
+    if ($isLoggedIn) {
+      return '<h2>Logged in</h2>';
+    }
+    else {
+      return '<h2>Not logged in</h2>';
     }
   }
 }
