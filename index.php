@@ -8,7 +8,8 @@ ini_set('display_errors', 'On');
 
 session_start();
 
-$_SESSION['isLoggedIn'] = false;
+$_SESSION['LayoutView::isLoggedIn'] = false;
+$_SESSION['foo'] = 'poop ';
 $_SESSION['userName'] = '';
 $_SESSION['passsword'] = '';
 $_SESSION['LoginView::sessionMessage'] = '';

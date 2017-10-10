@@ -1,5 +1,7 @@
 <?php
 
+require_once('view/LayoutView.php');
+
 class LoginView {
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
@@ -11,6 +13,8 @@ class LoginView {
   private static $messageId = 'LoginView::Message';
   private static $sessionMessage = 'LoginView::sessionMessage';
 	private static $requestUsername = '';
+	private static $isLoggedIn = 'LayoutView::isLoggedIn';
+
 	
 	/**
 	 * Create HTTP response
@@ -26,9 +30,9 @@ class LoginView {
       $_SESSION[self::$sessionMessage] .= $this->validateLoginInput();
     }
 
-    if($this->isLoggedIn()){
-      $response .= $this->generateLogoutButtonHTML();
-    }
+    //if($this->isLoggedIn()){
+    //  $response .= $this->generateLogoutButtonHTML();
+    //}
 
     return $this->generateLoginFormHTML();
 	}
@@ -71,6 +75,7 @@ class LoginView {
 					<input type="submit" name="' . self::$login . '" value="login" />
 				</fieldset>
 			</form>
+			' . $_SESSION['foo'] . ' 
 		';
   }
 
@@ -98,18 +103,10 @@ class LoginView {
 			return $_SESSION[self::$sessionMessage] .= 'Wrong name or password';
 		}elseif($_REQUEST[self::$password] != 'Password'){
 			return $_SESSION[self::$sessionMessage] .= 'Wrong name or password';
+		}elseif($_REQUEST[self::$password] = 'Password' && $_REQUEST[self::$name] = 'Admin'){
+			return $_SESSION['foo'] = 'true cockface';
 		}
-
-			// foreach ($_REQUEST as $key => $value) {
-			// 	var_dump($key);
-      // if($key[self::$name] === 'Admin'){
-      //   return $_SESSION[self::$sessionMessage] .= 'Wrong name or password';
-      // }
 	}
-
-  private function isLoggedIn(){
-		return $_SESSION['isLoggedIn'];
-  }
   
   public function loginAttempt(){
     return isset($_REQUEST[self::$login]);
@@ -126,6 +123,5 @@ class LoginView {
   private function getRequestKeepMeLoggedIn() {
     return $_REQUEST[self::$keep];
   }
-  
 
 }
