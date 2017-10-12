@@ -72,7 +72,7 @@ class LoginView {
 	}
 	
 	private function getRequestUserName() {
-    self::$requestUsername .= $_REQUEST[self::$name];
+    return $_REQUEST[self::$name];
   }
 
   private function getRequestPassword() {

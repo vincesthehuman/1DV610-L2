@@ -32,4 +32,12 @@ class LayoutView {
       return '<h2>Not logged in</h2>';
     }
   }
+
+    //OM jag är i en viss vy så visar jag en viss länk
+    //ToDo, en switchsats som renderar länk som korresponderar mot vilken GET användaren befinner sig i
+	public function renderLink(){
+		return '<a href="?">Back to login</a>';
+	}
+
+  //Kolla om vad användaren vill göra genom att köra urlView i den vy som jag vill köra?
 }

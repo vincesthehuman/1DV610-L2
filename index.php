@@ -11,9 +11,6 @@ ini_set('display_errors', 'On');
 
 session_start();
 
-$_SESSION['userName'] = '';
-$_SESSION['passsword'] = '';
-
 //CREATE OBJECTS OF THE VIEWS
 $v = new LoginView();
 $dtv = new DateTimeView();

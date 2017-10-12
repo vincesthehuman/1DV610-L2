@@ -5,19 +5,14 @@ class RegisterView {
 	private static $logout = 'RegisterView::Logout';
 	private static $name = 'RegisterView::UserName';
 	private static $password = 'RegisterView::Password';
+	private static $passwordRepeat = 'RegisterView::PasswordRepeat';
 	private static $cookieName = 'RegisterView::CookieName';
 	private static $cookiePassword = 'RegisterView::CookiePassword';
 	private static $keep = 'RegisterView::KeepMeLoggedIn';
   private static $messageId = 'RegisterView::Message';
 
 
-	/**
-	 * Create HTTP response
-	 *
-	 * Should be called after a login attempt has been determined
-	 *
-	 * @return  void BUT writes to standard output and cookies!
-	 */
+
 	public function response() {
 		$message = '';
 		//A message should be found i session, all controllers add the correct message like $_SESSION['register::Message']
@@ -26,28 +21,21 @@ class RegisterView {
 		return $response;
 	}
 	
-	/**
-	* Generate HTML code on the output buffer for the logout button
-	* @param $message, String output message
-	* @return  void, BUT writes to standard output!
-	*/
 	private function generateRegisterFormHTML() {
-
-		//Make so that the form is like the login view form with self::UserName etc
 		return '
 		<h2>Register new user</h2>
 		<form action="?register" method="post" enctype="multipart/form-data">
 			<fieldset>
 			<legend>Register a new user - Write username and password</legend>
-				<p id="RegisterView::Message"></p>
-				<label for="RegisterView::UserName">Username :</label>
-				<input type="text" size="20" name="RegisterView::UserName" id="RegisterView::UserName" value="">
+				<p id="' . $self::messageId . '"></p>
+				<label for="' . self::$name . '>Username :</label>
+				<input type="text" size="20" name="' . self::$name . '" id="' . self::$name . '" value="">
 				<br>
-				<label for="RegisterView::Password">Password  :</label>
-				<input type="password" size="20" name="RegisterView::Password" id="RegisterView::Password" value="">
+				<label for="' . self::$password . '">Password  :</label>
+				<input type="password" size="20" name="' . self::$password . '" id="' . self::$password . '" value="">
 				<br>
-				<label for="RegisterView::PasswordRepeat">Repeat password  :</label>
-				<input type="password" size="20" name="RegisterView::PasswordRepeat" id="RegisterView::PasswordRepeat" value="">
+				<label for="' . self::$password . '">Repeat password  :</label>
+				<input type="password" size="20" name="' . self::$password . '" id="' . self::$password . '" value="">
 				<br>
 				<input id="submit" type="submit" name="DoRegistration" value="Register">
 				<br>
@@ -56,7 +44,5 @@ class RegisterView {
 		';
 	}
 	
-	public function renderLink(){
-		return '<a href="?">Back to login</a>';
-	}
+
 }
