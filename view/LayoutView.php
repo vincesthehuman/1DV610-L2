@@ -24,6 +24,7 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
+          ' . $this->renderLink() . '
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
           <div class="container">
@@ -53,6 +54,18 @@ class LayoutView {
   
   private function renderRegisterLink(){
     return '<a href="?register">Register a new user</a>';
+  }
+
+  private function renderLink(){
+    switch ($this->urlView->getUrl()) {
+      case 'register':
+        return $this->renderLoginLink();
+        break;
+      
+      default:
+        return $this->renderRegisterLink();
+        break;
+    }
   }
 
   private function contentToRender(){

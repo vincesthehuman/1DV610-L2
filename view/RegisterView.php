@@ -39,7 +39,6 @@ class RegisterView {
 				<br>
 				<input id="submit" type="submit" name="DoRegistration" value="Register">
 				<br>
-
 			</fieldset>
 		</form>
 		';
