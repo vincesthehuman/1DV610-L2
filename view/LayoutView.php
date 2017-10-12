@@ -1,9 +1,21 @@
 <?php
 
+require_once('UrlView.php');
+require_once('LoginView.php');
+require_once('RegisterView.php');
 
 class LayoutView {
+  private $urlView;
+  private $registerView;
+  private $loginView;
+
+  public function __construct(){
+    $this->urlView = new UrlView();
+    $this->registerView = new RegisterView();
+    $this->loginView = new LoginView();
+  }
   
-  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
+  public function render($isLoggedIn, DateTimeView $dtv) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -15,7 +27,7 @@ class LayoutView {
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
           <div class="container">
-              ' . $v->response() . '
+              ' . $this->contentToRender() . '
               
               ' . $dtv->show() . '
           </div>
@@ -35,9 +47,25 @@ class LayoutView {
 
     //OM jag är i en viss vy så visar jag en viss länk
     //ToDo, en switchsats som renderar länk som korresponderar mot vilken GET användaren befinner sig i
-	public function renderLink(){
+	private function renderLoginLink(){
 		return '<a href="?">Back to login</a>';
-	}
+  }
+  
+  private function renderRegisterLink(){
+    return '<a href="?register">Register a new user</a>';
+  }
+
+  private function contentToRender(){
+    switch ($this->urlView->getUrl()) {
+      case 'register':
+        return $this->registerView->response();
+        break;
+      
+      default:
+        return $this->loginView->response();
+        break;
+    }
+  }
 
   //Kolla om vad användaren vill göra genom att köra urlView i den vy som jag vill köra?
 }

@@ -27,8 +27,8 @@ class RegisterView {
 		<form action="?register" method="post" enctype="multipart/form-data">
 			<fieldset>
 			<legend>Register a new user - Write username and password</legend>
-				<p id="' . $self::messageId . '"></p>
-				<label for="' . self::$name . '>Username :</label>
+
+				<label for="' . self::$name . '">Username:</label>
 				<input type="text" size="20" name="' . self::$name . '" id="' . self::$name . '" value="">
 				<br>
 				<label for="' . self::$password . '">Password  :</label>
@@ -39,6 +39,7 @@ class RegisterView {
 				<br>
 				<input id="submit" type="submit" name="DoRegistration" value="Register">
 				<br>
+
 			</fieldset>
 		</form>
 		';
