@@ -11,8 +11,6 @@ class RegisterView {
 	private static $keep = 'RegisterView::KeepMeLoggedIn';
   private static $messageId = 'RegisterView::Message';
 
-
-
 	public function response() {
 		$message = '';
 		//A message should be found i session, all controllers add the correct message like $_SESSION['register::Message']
@@ -43,6 +41,5 @@ class RegisterView {
 		</form>
 		';
 	}
-	
 
 }

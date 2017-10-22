@@ -10,8 +10,6 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 
-	
-
 	/**
 	 * Create HTTP response
 	 *
@@ -67,6 +65,7 @@ class LoginView {
 			</form>
 		';
 	}
+
 	public function renderLink(){
 		return '<a href="?register">Register a new user</a>';
 	}

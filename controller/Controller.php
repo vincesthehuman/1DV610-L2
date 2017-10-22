@@ -4,21 +4,14 @@ class Controller {
   public function __construct() {
   }
 
-  public function pageToRender(){
-    switch ($_GET) {
-      case 'register':
-        # code...
-        break;
-      
-      case 
-      default:
-        # code...
-        break;
-    }
-    if(isset($_GET['register'])){
-      $this->LayoutView->response();
+  public function handlePost(){
+    //var_dump(end($_REQUEST));
+    
+    if(array_key_exists('DoRegistration', $_REQUEST)){
+      var_dump('doRegistration is active!11!!');
     }else{
-      $this->LayoutView->response();
+      var_dump('nothing ere innit');
     }
   }
+  
 }

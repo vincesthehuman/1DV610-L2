@@ -15,7 +15,7 @@ class LayoutView {
     $this->loginView = new LoginView();
   }
   
-  public function render($isLoggedIn, DateTimeView $dtv) {
+  public function render($isLoggedIn, DateTimeView $dtv){
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -29,12 +29,23 @@ class LayoutView {
           
           <div class="container">
               ' . $this->contentToRender() . '
-              
               ' . $dtv->show() . '
           </div>
          </body>
       </html>
     ';
+  }
+
+  private function renderLink(){
+    switch ($this->urlView->getUrl()){
+      case 'register':
+        return $this->renderLoginLink();
+        break;
+      
+      default:
+        return $this->renderRegisterLink();
+        break;
+    }
   }
   
   private function renderIsLoggedIn($isLoggedIn) {
@@ -43,28 +54,6 @@ class LayoutView {
     }
     else {
       return '<h2>Not logged in</h2>';
-    }
-  }
-
-    //OM jag är i en viss vy så visar jag en viss länk
-    //ToDo, en switchsats som renderar länk som korresponderar mot vilken GET användaren befinner sig i
-	private function renderLoginLink(){
-		return '<a href="?">Back to login</a>';
-  }
-  
-  private function renderRegisterLink(){
-    return '<a href="?register">Register a new user</a>';
-  }
-
-  private function renderLink(){
-    switch ($this->urlView->getUrl()) {
-      case 'register':
-        return $this->renderLoginLink();
-        break;
-      
-      default:
-        return $this->renderRegisterLink();
-        break;
     }
   }
 
@@ -80,5 +69,12 @@ class LayoutView {
     }
   }
 
-  //Kolla om vad användaren vill göra genom att köra urlView i den vy som jag vill köra?
+	private function renderLoginLink(){
+		return '<a href="?">Back to login</a>';
+  }
+  
+  private function renderRegisterLink(){
+    return '<a href="?register">Register a new user</a>';
+  }
+
 }
