@@ -5,7 +5,7 @@ class LoginModel{
   public function __construct() {
   }
 
-  public function innit($array){
+  public function checkLoginCredentials($array){
   var_dump($array);
   }
 

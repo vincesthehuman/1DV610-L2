@@ -20,7 +20,7 @@ class LoginController {
       'password' => $this->loginView->getRequestPassword(),
       'keepLoggedIn' => $this->loginView->getRequestKeepMeLoggedIn()
     );
-    $this->loginModel->innit($array);
+    $this->loginModel->checkLoginCredentials($array);
   }
 
 }
