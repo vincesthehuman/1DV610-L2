@@ -1,16 +1,18 @@
 <?php
-
 require_once('view/RegisterView.php');
 
-class ViewController{
-  private $RegisterView;
+class RegisterController{
 
   public function __construct() {
-    $this->RegisterView = new RegisterView();
+    $this->registerView = new RegisterView();
   }
 
-  public function render(){
-    $this->RegisterView->response();
+  public function innit(){
+    return $this->registerView->response();
+  }
+
+  private function registrationAttempt(){
+    return array_key_exists('DoRegistration', $_REQUEST);
   }
 
 }

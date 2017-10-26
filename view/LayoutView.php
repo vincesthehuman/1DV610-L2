@@ -1,21 +1,17 @@
 <?php
-
+require_once('DateTimeView.php');
 require_once('UrlView.php');
-require_once('LoginView.php');
-require_once('RegisterView.php');
 
 class LayoutView {
+  private $dateTimeView;
   private $urlView;
-  private $registerView;
-  private $loginView;
 
   public function __construct(){
+    $this->dateTimeView = new DateTimeView();
     $this->urlView = new UrlView();
-    $this->registerView = new RegisterView();
-    $this->loginView = new LoginView();
   }
   
-  public function render($isLoggedIn, DateTimeView $dtv){
+  public function render($isLoggedIn, $contentToRender){
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -28,8 +24,8 @@ class LayoutView {
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
           <div class="container">
-              ' . $this->contentToRender() . '
-              ' . $dtv->show() . '
+              ' . $contentToRender . '
+              ' . $this->dateTimeView->show() . '
           </div>
          </body>
       </html>
@@ -54,18 +50,6 @@ class LayoutView {
     }
     else {
       return '<h2>Not logged in</h2>';
-    }
-  }
-
-  private function contentToRender(){
-    switch ($this->urlView->getUrl()) {
-      case 'register':
-        return $this->registerView->response();
-        break;
-      
-      default:
-        return $this->loginView->response();
-        break;
     }
   }
 

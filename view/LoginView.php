@@ -70,15 +70,15 @@ class LoginView {
 		return '<a href="?register">Register a new user</a>';
 	}
 	
-	private function getRequestUserName() {
+	public function getRequestUserName() {
     return $_REQUEST[self::$name];
   }
 
-  private function getRequestPassword() {
+  public function getRequestPassword() {
     return $_REQUEST[self::$password];
   }
 
-  private function getRequestKeepMeLoggedIn() {
+  public function getRequestKeepMeLoggedIn() {
     return $_REQUEST[self::$keep];
   }
 
