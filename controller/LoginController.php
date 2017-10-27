@@ -3,6 +3,7 @@ require_once('view/LoginView.php');
 require_once('model/LoginModel.php');
 
 class LoginController{
+  private $message;
   public function __construct(){
     $this->loginView = new LoginView();
     $this->loginModel = new LoginModel();
@@ -10,9 +11,9 @@ class LoginController{
 
   public function innit(){
     if ($this->loginAttempt()){
-        echo $this->loginModel->checkLoginCredentials($this->getLoginRequest());
+        $this->message = $this->loginModel->checkLoginCredentials($this->getLoginRequest());
     }
-    return $this->loginView->response();
+    return $this->loginView->response($this->message);
   }
 
   //Checks if the request contains the static name for loginview
