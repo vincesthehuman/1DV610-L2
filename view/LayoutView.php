@@ -2,20 +2,17 @@
 require_once('DateTimeView.php');
 require_once('UrlView.php');
 
-class LayoutView
-{
-    private $dateTimeView;
-    private $urlView;
+class LayoutView{
+  private $dateTimeView;
+  private $urlView;
 
-    public function __construct()
-    {
-        $this->dateTimeView = new DateTimeView();
-        $this->urlView = new UrlView();
-    }
-  
-    public function render($isLoggedIn, $contentToRender)
-    {
-        echo '<!DOCTYPE html>
+  public function __construct(){
+    $this->dateTimeView = new DateTimeView();
+    $this->urlView = new UrlView();
+  }
+
+  public function render($isLoggedIn, $contentToRender){
+    echo '<!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
@@ -25,45 +22,41 @@ class LayoutView
           <h1>Assignment 2</h1>
           ' . $this->renderLink() . '
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
-          
           <div class="container">
-              ' . $contentToRender . '
-              ' . $this->dateTimeView->show() . '
+            ' . $contentToRender . '
+            ' . $this->dateTimeView->show() . '
           </div>
-         </body>
+        </body>
       </html>
     ';
-    }
+  }
 
-    private function renderLink()
-    {
-        switch ($this->urlView->getUrl()) {
-            case 'register':
-                return $this->renderLoginLink();
-            break;
-      
-            default:
-                return $this->renderRegisterLink();
-            break;
-        }
-    }
-  
-    private function renderIsLoggedIn($isLoggedIn)
-    {
-        if ($isLoggedIn) {
-            return '<h2>Logged in</h2>';
-        } else {
-            return '<h2>Not logged in</h2>';
-        }
-    }
+  private function renderLink(){
+    switch ($this->urlView->getUrl()) {
+      case 'register':
+        return $this->renderLoginLink();
+        break;
 
-    private function renderLoginLink()
-    {
-        return '<a href="?">Back to login</a>';
+      default:
+        return $this->renderRegisterLink();
+        break;
     }
-  
-    private function renderRegisterLink()
-    {
-        return '<a href="?register">Register a new user</a>';
+  }
+
+  private function renderIsLoggedIn($isLoggedIn){
+    if ($isLoggedIn) {
+      return '<h2>Logged in</h2>';
+    }else{
+      return '<h2>Not logged in</h2>';
     }
+  }
+
+  private function renderLoginLink(){
+    return '<a href="?">Back to login</a>';
+  }
+
+  private function renderRegisterLink(){
+    return '<a href="?register">Register a new user</a>';
+  }
+
 }
