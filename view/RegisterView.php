@@ -1,26 +1,29 @@
 <?php
 
-class RegisterView {
-	private static $login = 'RegisterView::Login';
-	private static $logout = 'RegisterView::Logout';
-	private static $name = 'RegisterView::UserName';
-	private static $password = 'RegisterView::Password';
-	private static $passwordRepeat = 'RegisterView::PasswordRepeat';
-	private static $cookieName = 'RegisterView::CookieName';
-	private static $cookiePassword = 'RegisterView::CookiePassword';
-	private static $keep = 'RegisterView::KeepMeLoggedIn';
-  private static $messageId = 'RegisterView::Message';
+class RegisterView
+{
+    private static $login = 'RegisterView::Login';
+    private static $logout = 'RegisterView::Logout';
+    private static $name = 'RegisterView::UserName';
+    private static $password = 'RegisterView::Password';
+    private static $passwordRepeat = 'RegisterView::PasswordRepeat';
+    private static $cookieName = 'RegisterView::CookieName';
+    private static $cookiePassword = 'RegisterView::CookiePassword';
+    private static $keep = 'RegisterView::KeepMeLoggedIn';
+    private static $messageId = 'RegisterView::Message';
 
-	public function response() {
-		$message = '';
-		//A message should be found i session, all controllers add the correct message like $_SESSION['register::Message']
+    public function response()
+    {
+        $message = '';
+        //A message should be found i session, all controllers add the correct message like $_SESSION['register::Message']
 
-    $response = $this->generateRegisterFormHTML();
-		return $response;
-	}
-	
-	private function generateRegisterFormHTML() {
-		return '
+        $response = $this->generateRegisterFormHTML();
+        return $response;
+    }
+    
+    private function generateRegisterFormHTML()
+    {
+        return '
 		<h2>Register new user</h2>
 		<form action="?register" method="post" enctype="multipart/form-data">
 			<fieldset>
@@ -40,6 +43,5 @@ class RegisterView {
 			</fieldset>
 		</form>
 		';
-	}
-
+    }
 }

@@ -1,12 +1,13 @@
 <?php
 
-class RegisterUserModel{
+class RegisterUserModel
+{
 
-  public function __construct() {
-  }
+    public function __construct()
+    {
+    }
 
-  public function init(){
-    
-  }
-
+    public function init()
+    {
+    }
 }

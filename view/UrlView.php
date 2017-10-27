@@ -1,8 +1,9 @@
 <?php
 
-class UrlView {
-  public function getUrl(){
-    return key($_GET);
-  }
-  
+class UrlView
+{
+    public function getUrl()
+    {
+        return key($_GET);
+    }
 }
