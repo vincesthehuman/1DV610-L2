@@ -88,7 +88,7 @@ class LoginView
     return self::$login;
   }
 
-  public function wrongNameOrPassword(){
+  public function wrongNameOrPasswordMessage(){
     return;//return correct message that will dispaly in the login view
   }
   

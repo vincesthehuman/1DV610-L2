@@ -4,9 +4,9 @@ require_once('model/RegisterUserModel.php');
 
 class RegisterController{
   private $message;
-  private static $username = 'username';
-  private static $password = 'password';
-  private static $repeatPassword = 'repeatPassword';
+  private static $name = 'RegisterView::UserName';
+  private static $password = 'RegisterView::Password';
+  private static $passwordRepeat = 'RegisterView::PasswordRepeat';
   
   public function __construct(){
     $this->registerView = new RegisterView();
@@ -15,8 +15,8 @@ class RegisterController{
 
   public function innit(){
     if($this->registrationAttempt()){
-      //$_SESSION['RegisterView::UserName'] = $this->registerView->getRegisterUserName();
-      return $this->registerView->response('You just tried to register');
+      $_SESSION['RegisterView::UserName'] = $this->registerView->getRegisterUserName();
+      $this->message = $this->registerModel->innit($this->getRegisterRequest());
     }
     return $this->registerView->response($this->message);
   }
@@ -27,9 +27,9 @@ class RegisterController{
 
   private function getRegisterRequest(){
     return $array = array(
-    self::$username => $this->registerView->getRegisterUserName(),
+    self::$name => $this->registerView->getRegisterUserName(),
     self::$password => $this->registerView->getRegisterPassword(),
-    self::$repeatPassword => $this->registerView->getRgisterRepeatPassword()
+    self::$passwordRepeat => $this->registerView->getRgisterRepeatPassword()
     ); //'keepLoggedIn' => $this->loginView->getRequestKeepMeLoggedIn()
   }
   

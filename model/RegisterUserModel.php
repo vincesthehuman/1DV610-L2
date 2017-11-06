@@ -4,26 +4,33 @@ class RegisterUserModel{
   private $notCorrectInputMessage;
 
   private static $name = 'RegisterView::UserName';
-  private static $minimumNameLength = 3;
   private static $password = 'RegisterView::Password';
   private static $passwordRepeat = 'RegisterView::PasswordRepeat';
+  private static $minimumNameLength = 3;
   private static $minimumPasswordLength = 6;
 
   public function __construct(){
   }
 
-  public function innit(){
-  }
-
-  private function checkNameLength($name){
-    if(strlen($name) <= $this->minimumNameLength){
-      return 'Username has too few characters, at least ' . $this->minimumNameLength . ' characters.';
+  public function innit($array){
+    if($this->checkNameLength($array)){
+      return $this->notCorrectInputMessage;
+    }elseif($this->checkPasswordLength($array)){
+      return $this->notCorrectInputMessage;
+    }else{
+      return 'Somewhat of a success';
     }
   }
 
-  private function checkPasswordLength($password){
-    if (strlen($password) <= $this->minimumPasswordLength) {
-      return 'Password has too few characters, at least ' . $this->minimumPasswordLength . ' characters.';
+  private function checkNameLength($array){
+    if(strlen($array[self::$name]) < self::$minimumNameLength){
+      return $this->notCorrectInputMessage = 'Username has too few characters, at least ' . self::$minimumNameLength . ' characters.';
+    }
+  }
+
+  private function checkPasswordLength($array){
+    if (strlen($array[self::$password]) < self::$minimumPasswordLength) {
+      return  $this->notCorrectInputMessage = 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
     }
   }
 
