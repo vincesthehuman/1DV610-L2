@@ -1,5 +1,6 @@
 <?php
 require_once('view/RegisterView.php');
+require_once('model/RegisterUserModel.php');
 
 class RegisterController{
   private $message;
@@ -9,11 +10,12 @@ class RegisterController{
   
   public function __construct(){
     $this->registerView = new RegisterView();
+    $this->registerModel = new registerUserModel();
   }
 
   public function innit(){
     if($this->registrationAttempt()){
-      $_SESSION['RegisterView::UserName'] = $this->registerView->getRegisterUserName();
+      //$_SESSION['RegisterView::UserName'] = $this->registerView->getRegisterUserName();
       return $this->registerView->response('You just tried to register');
     }
     return $this->registerView->response($this->message);
