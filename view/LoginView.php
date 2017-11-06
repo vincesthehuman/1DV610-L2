@@ -1,5 +1,4 @@
 <?php
-
 class LoginView
 {
   private static $login = 'LoginView::Login';
@@ -10,6 +9,7 @@ class LoginView
   private static $cookiePassword = 'LoginView::CookiePassword';
   private static $keep = 'LoginView::KeepMeLoggedIn';
   private static $messageId = 'LoginView::Message';
+  public $userName = '';
 
   /**
    * Create HTTP response
@@ -51,7 +51,7 @@ class LoginView
           <p id="' . self::$messageId . '">' . $message . '</p>
           
           <label for="' . self::$name . '">Username :</label>
-          <input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+          <input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->userName . '" />
 
           <label for="' . self::$password . '">Password :</label>
           <input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -68,6 +68,9 @@ class LoginView
   public function renderLink(){
     return '<a href="?register">Register a new user</a>';
   }
+  public function setLoginUserName($username){
+    return $this->username = $username;
+  }
     
   public function getRequestUserName(){
     return $_REQUEST[self::$name];
@@ -83,6 +86,10 @@ class LoginView
     
   public function getStaticLoginString(){
     return self::$login;
+  }
+
+  public function wrongNameOrPassword(){
+    return ;
   }
   
 }

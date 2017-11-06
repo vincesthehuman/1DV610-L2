@@ -1,5 +1,4 @@
 <?php
-
 class LoginModel{
   private $notCorrectInputMessage;
 
@@ -12,16 +11,21 @@ class LoginModel{
     if($this->emptyCredentials($array)){
       return $this->notCorrectInputMessage;
     }else{
-     return 'Wrong name or password'; 
+     return 'Wrong name or password';
     }
   }
 
   private function emptyCredentials($array){
+    $missingParam;
     foreach ($array as $key => $value) {
       if (strlen($value) <= 0) {
         return $this->notCorrectInputMessage .= ucfirst($key) . ' is missing';
       }
     }
+  }
+
+  private function checkCredentials(){
+    
   }
 
 }
