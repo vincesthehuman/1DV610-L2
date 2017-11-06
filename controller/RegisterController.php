@@ -5,6 +5,7 @@ class RegisterController{
   private $message;
   private static $username = 'username';
   private static $password = 'password';
+  private static $repeatPassword = 'repeatPassword';
   
   public function __construct(){
     $this->registerView = new RegisterView();
@@ -12,6 +13,7 @@ class RegisterController{
 
   public function innit(){
     if($this->registrationAttempt()){
+      $_SESSION['RegisterView::UserName'] = $this->registerView->getRegisterUserName();
       return $this->registerView->response('You just tried to register');
     }
     return $this->registerView->response($this->message);
@@ -21,7 +23,7 @@ class RegisterController{
     return array_key_exists('DoRegistration', $_REQUEST);
   }
 
-  private function getLoginRequest(){
+  private function getRegisterRequest(){
     return $array = array(
     self::$username => $this->registerView->getRegisterUserName(),
     self::$password => $this->registerView->getRegisterPassword(),

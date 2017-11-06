@@ -27,7 +27,7 @@ class RegisterView
         <legend>Register a new user - Write username and password</legend>
           <p id="'. self::$messageId .'"> ' . $message . '</p>
           <label for="' . self::$name . '">Username:</label>
-          <input type="text" size="20" name="' . self::$name . '" id="' . self::$name . '" value="">
+          <input type="text" size="20" name="' . self::$name . '" id="' . self::$name . '" value="' . $_SESSION[self::$name] . '">
           <br>
           <label for="' . self::$password . '">Password  :</label>
           <input type="password" size="20" name="' . self::$password . '" id="' . self::$password . '" value="">
