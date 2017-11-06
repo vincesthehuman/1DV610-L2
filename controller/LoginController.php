@@ -4,6 +4,8 @@ require_once('model/LoginModel.php');
 
 class LoginController{
   private $message;
+  private static $username = 'username';
+  private static $password = 'password';
   public function __construct(){
     $this->loginView = new LoginView();
     $this->loginModel = new LoginModel();
@@ -23,8 +25,8 @@ class LoginController{
 
   private function getLoginRequest(){
     return $array = array(
-    'username' => $this->loginView->getRequestUserName(),
-    'password' => $this->loginView->getRequestPassword()
+    self::$username => $this->loginView->getRequestUserName(),
+    self::$password => $this->loginView->getRequestPassword()
     ); //'keepLoggedIn' => $this->loginView->getRequestKeepMeLoggedIn()
   }
   
