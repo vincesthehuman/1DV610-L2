@@ -29,6 +29,8 @@ class LoginModel{
     $foo = '';
     if($array[self::$username] === 'Admin' && $array[self::$password] === 'Password'){
       $foo .= 'right password mate';
+    }else{
+      $foo .= 'Wrong name or password';
     }
     return $foo;
   }

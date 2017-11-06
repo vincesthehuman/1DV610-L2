@@ -12,21 +12,20 @@ class RegisterView
   private static $keep = 'RegisterView::KeepMeLoggedIn';
   private static $messageId = 'RegisterView::Message';
 
-  public function response(){
-    $message = '';
+  public function response($message){
     //A message should be found i session, all controllers add the correct message like $_SESSION['register::Message']
 
-    $response = $this->generateRegisterFormHTML();
+    $response = $this->generateRegisterFormHTML($message);
     return $response;
   }
     
-  private function generateRegisterFormHTML(){
+  private function generateRegisterFormHTML($message){
     return '
       <h2>Register new user</h2>
       <form action="?register" method="post" enctype="multipart/form-data">
         <fieldset>
         <legend>Register a new user - Write username and password</legend>
-          <p id="'. self::$messageId .'"></p>
+          <p id="'. self::$messageId .'"> ' . $message . '</p>
           <label for="' . self::$name . '">Username:</label>
           <input type="text" size="20" name="' . self::$name . '" id="' . self::$name . '" value="">
           <br>
@@ -41,6 +40,18 @@ class RegisterView
         </fieldset>
       </form>
     ';
+  }
+
+  public function getRegisterUserName(){
+    return $_REQUEST[self::$name];
+  }
+
+  public function getRegisterPassword(){
+    return $_REQUEST[self::$password];
+  }
+
+  public function getRgisterRepeatPassword(){
+    return $_REQUEST[self::$passwordRepeat];
   }
 
 }

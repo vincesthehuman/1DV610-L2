@@ -9,7 +9,7 @@ class LoginView
   private static $cookiePassword = 'LoginView::CookiePassword';
   private static $keep = 'LoginView::KeepMeLoggedIn';
   private static $messageId = 'LoginView::Message';
-  public $userName = '';
+  public $userName;
 
   /**
    * Create HTTP response
@@ -51,7 +51,7 @@ class LoginView
           <p id="' . self::$messageId . '">' . $message . '</p>
           
           <label for="' . self::$name . '">Username :</label>
-          <input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->userName . '" />
+          <input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $_SESSION[self::$name] . '" />
 
           <label for="' . self::$password . '">Password :</label>
           <input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -69,7 +69,7 @@ class LoginView
     return '<a href="?register">Register a new user</a>';
   }
   public function setLoginUserName($username){
-    return $this->username = $username;
+    $this->username = $username;
   }
     
   public function getRequestUserName(){
@@ -89,7 +89,7 @@ class LoginView
   }
 
   public function wrongNameOrPassword(){
-    return ;
+    return;//return correct message that will dispaly in the login view
   }
   
 }

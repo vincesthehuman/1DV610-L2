@@ -13,7 +13,8 @@ class LoginController{
 
   public function innit(){
     if ($this->loginAttempt()){
-        $this->message = $this->loginModel->checkLoginCredentials($this->getLoginRequest());
+      $_SESSION['LoginView::UserName'] = $this->loginView->getRequestUserName();
+      $this->message = $this->loginModel->checkLoginCredentials($this->getLoginRequest());
     }
     return $this->loginView->response($this->message);
   }
