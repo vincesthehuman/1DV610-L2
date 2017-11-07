@@ -28,7 +28,7 @@ class LoginModel{
   private function checkCredentials($array){
     $foo = '';
     if($array[self::$username] === 'Admin' && $array[self::$password] === 'Password'){
-      $foo .= 'Welcome';
+      $_SESSION['isLoggedIn'] = true;
     }else{
       $foo .= 'Wrong name or password';
     }

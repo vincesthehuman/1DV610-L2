@@ -11,7 +11,7 @@ class LayoutView{
     $this->urlView = new UrlView();
   }
 
-  public function render($isLoggedIn, $contentToRender){
+  public function render($contentToRender){
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -21,7 +21,7 @@ class LayoutView{
         <body>
           <h1>Assignment 2</h1>
           ' . $this->renderLink() . '
-          ' . $this->renderIsLoggedIn($isLoggedIn) . '
+          ' . $this->renderIsLoggedIn() . '
           <div class="container">
             ' . $contentToRender . '
             ' . $this->dateTimeView->show() . '
@@ -43,8 +43,8 @@ class LayoutView{
     }
   }
 
-  private function renderIsLoggedIn($isLoggedIn){
-    if ($isLoggedIn) {
+  private function renderIsLoggedIn(){
+    if ($_SESSION['isLoggedIn']) {
       return '<h2>Logged in</h2>';
     }else{
       return '<h2>Not logged in</h2>';

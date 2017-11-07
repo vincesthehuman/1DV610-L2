@@ -13,7 +13,7 @@ class MainController{
     }
 
   public function init(){
-    $this->layoutView->render(false, $this->contentToRender());
+    $this->layoutView->render($this->contentToRender());
   }
 
   private function contentToRender()
