@@ -24,6 +24,7 @@ class RegisterUserModel{
 
   private function checkNameLength($array){
     if(strlen($array[self::$name]) < self::$minimumNameLength){
+      var_dump("HEJSAN LALLA");
       return $this->notCorrectInputMessage = 'Username has too few characters, at least ' . self::$minimumNameLength . ' characters.';
     }
   }
