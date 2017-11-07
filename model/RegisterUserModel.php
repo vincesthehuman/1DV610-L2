@@ -12,24 +12,20 @@ class RegisterUserModel{
   }
 
   public function innit($array){
-    if($this->checkPasswordLength($array)){
-      return $this->notCorrectInputMessage;
-    }elseif($this->checkNameLength($array)){
-       return $this->notCorrectInputMessage;
-    }else{
-      return 'registration successful';
-    }
+    $this->checkNameLength($array);
+    $this->checkPasswordLength($array);
+    return $this->notCorrectInputMessage;
   }
 
   private function checkNameLength($array){
     if(strlen($array[self::$name]) < self::$minimumNameLength){
-      return $this->notCorrectInputMessage .= 'Username has too few characters, at least 3 characters.';
+      $this->notCorrectInputMessage .= 'Username has too few characters, at least 3 characters.</br>';
     }
   }
 
   private function checkPasswordLength($array){
     if (strlen($array[self::$password]) < self::$minimumPasswordLength) {
-      return $this->notCorrectInputMessage .= 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
+      $this->notCorrectInputMessage .= 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
     }
   }
 
