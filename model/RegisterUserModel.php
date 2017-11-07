@@ -19,7 +19,7 @@ class RegisterUserModel{
 
   private function checkNameLength($array){
     if(strlen($array[self::$name]) < self::$minimumNameLength){
-      $this->notCorrectInputMessage .= 'Username has too few characters, at least 3 characters.</br>';
+      $this->notCorrectInputMessage .= 'Username has too few characters, at least 3 characters.' . '<br>';
     }
   }
 
