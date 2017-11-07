@@ -29,6 +29,7 @@ class LoginModel{
     $foo = '';
     if($array[self::$username] === 'Admin' && $array[self::$password] === 'Password'){
       $_SESSION['isLoggedIn'] = true;
+      $foo .= 'Welcome';
     }else{
       $foo .= 'Wrong name or password';
     }
