@@ -24,13 +24,13 @@ class RegisterUserModel{
 
   private function checkNameLength($array){
     if(strlen($array[self::$name]) < self::$minimumNameLength){
-      return $this->notCorrectInputMessage .= 'Username has too few characters, at least ' . self::$minimumNameLength . ' characters.';
+      $this->notCorrectInputMessage .= 'Username has too few characters, at least ' . self::$minimumNameLength . ' characters.';
     }
   }
 
   private function checkPasswordLength($array){
     if (strlen($array[self::$password]) < self::$minimumPasswordLength) {
-      return  $this->notCorrectInputMessage .= 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
+      $this->notCorrectInputMessage .= 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
     }
   }
 
