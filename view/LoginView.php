@@ -9,7 +9,7 @@ class LoginView
   private static $cookiePassword = 'LoginView::CookiePassword';
   private static $keep = 'LoginView::KeepMeLoggedIn';
   private static $messageId = 'LoginView::Message';
-  public $userName;
+ 
 
   /**
    * Create HTTP response
@@ -32,7 +32,7 @@ class LoginView
   private function generateLogoutButtonHTML($message){
     return '
       <form  method="post" >
-        <p id="' . self::$messageId . '">' . $message .'</p>
+        <p id="' . self::$messageId . '">' . $message . '</p>
         <input type="submit" name="' . self::$logout . '" value="logout"/>
       </form>
     ';
@@ -67,9 +67,6 @@ class LoginView
 
   public function renderLink(){
     return '<a href="?register">Register a new user</a>';
-  }
-  public function setLoginUserName($username){
-    $this->username = $username;
   }
     
   public function getRequestUserName(){
