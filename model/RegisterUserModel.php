@@ -12,9 +12,9 @@ class RegisterUserModel{
   }
 
   public function innit($array){
-    if($this->checkNameLength($array)){
+    if($this->checkPasswordLength($array)){
       return $this->notCorrectInputMessage;
-    }elseif($this->checkPasswordLength($array)){
+    }elseif($this->checkNameLength($array)){
        return $this->notCorrectInputMessage;
     }else{
       return 'registration successful';
