@@ -14,10 +14,10 @@ class RegisterUserModel{
   public function innit($array){
     if($this->checkNameLength($array)){
       return $this->notCorrectInputMessage;
-    // }elseif($this->checkPasswordLength($array)){
-    //   return $this->notCorrectInputMessage;
+    }elseif($this->checkPasswordLength($array)){
+       return $this->notCorrectInputMessage;
     }else{
-      return 'Password has too few characters, at least 6 characters.';
+      return 'registration successful';
     }
   }
 
@@ -28,7 +28,6 @@ class RegisterUserModel{
   }
 
   private function checkPasswordLength($array){
-    var_dump('yo nigga');
     if (strlen($array[self::$password]) < self::$minimumPasswordLength) {
       return $this->notCorrectInputMessage .= 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
     }
