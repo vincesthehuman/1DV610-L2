@@ -6,6 +6,7 @@ class LoginController{
   private $message;
   private static $username = 'username';
   private static $password = 'password';
+  
   public function __construct(){
     $this->loginView = new LoginView();
     $this->loginModel = new LoginModel();

@@ -30,7 +30,7 @@ class RegisterController{
     self::$name => $this->registerView->getRegisterUserName(),
     self::$password => $this->registerView->getRegisterPassword(),
     self::$passwordRepeat => $this->registerView->getRgisterRepeatPassword()
-    ); //'keepLoggedIn' => $this->loginView->getRequestKeepMeLoggedIn()
+    );
   }
   
 }
