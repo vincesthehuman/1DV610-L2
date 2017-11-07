@@ -17,13 +17,13 @@ class RegisterUserModel{
     // }elseif($this->checkPasswordLength($array)){
     //   return $this->notCorrectInputMessage;
     }else{
-      return 'Password has too few characters, at least ' . self::$minimumPasswordLength . ' characters.';
+      return 'Password has too few characters, at least 6 characters.';
     }
   }
 
   private function checkNameLength($array){
     if(strlen($array[self::$name]) < self::$minimumNameLength){
-      return $this->notCorrectInputMessage .= 'Username has too few characters, at least ' . self::$minimumNameLength . ' characters.';
+      return $this->notCorrectInputMessage .= 'Username has too few characters, at least 3 characters.';
     }
   }
 
