@@ -35,7 +35,7 @@ class RegisterView
           <label for="' . self::$passwordRepeat . '">Repeat password  :</label>
           <input type="password" size="20" name="' . self::$passwordRepeat . '" id="' . self::$passwordRepeat . '" value="">
           <br>
-          <input id="submit" type="submit" name="DoRegistration" value="Register">
+          <input id="submit" type="submit" name="RegisterView::Register" value="Register">
           <br>
         </fieldset>
       </form>

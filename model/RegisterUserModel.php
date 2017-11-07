@@ -12,6 +12,7 @@ class RegisterUserModel{
   }
 
   public function innit($array){
+    var_dump($array);
     if($this->checkPasswordLength($array)){
       return $this->notCorrectInputMessage;
     }elseif($this->checkNameLength($array)){
