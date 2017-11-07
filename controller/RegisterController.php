@@ -22,7 +22,7 @@ class RegisterController{
   }
 
   private function registrationAttempt(){
-    return array_key_exists('DoRegistration', $_REQUEST);
+    return array_key_exists('RegisterView::Register', $_REQUEST);
   }
 
   private function getRegisterRequest(){
